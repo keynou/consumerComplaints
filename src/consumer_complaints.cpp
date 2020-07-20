@@ -129,7 +129,7 @@ void writeReport(){
     for (auto it = resultMap.begin();it!=resultMap.end();++it){
         for (auto jt = resultMap[(*it).first].begin();jt!=resultMap[(*it).first].end();++jt){
             writeFile << (*it).first << "," << (*jt).first << "," << (*jt).second.complaints4YearProd  << "," << (*jt).second.companies4YearProd << "," <<setprecision(0) << fixed << (double)(*jt).second.maxComplaintsAgainstOneComp/(*jt).second.complaints4YearProd*100 << endl;
-            cout << (*it).first << "," << (*jt).first << "," << (*jt).second.complaints4YearProd  << "," << (*jt).second.companies4YearProd << "," <<setprecision(0) << fixed << (double)(*jt).second.maxComplaintsAgainstOneComp/(*jt).second.complaints4YearProd*100 << endl;
+            //cout << (*it).first << "," << (*jt).first << "," << (*jt).second.complaints4YearProd  << "," << (*jt).second.companies4YearProd << "," <<setprecision(0) << fixed << (double)(*jt).second.maxComplaintsAgainstOneComp/(*jt).second.complaints4YearProd*100 << endl;
         }
     }
 
@@ -178,11 +178,10 @@ void readInputFileForInd (int yearInd, int productInd, int companyInd){
     line =  "";
     int pos;
     int j = 0;
-    while (myfile.peek() != EOF) { // && lineNum<300 for checking only a few lines.
+    while (myfile.peek() != EOF){ // && lineNum<300 for checking only a few lines.
         j = 0;
         row = "";
         line  = "";
-
         // Here I will clean each line from the breaks and glue the relevant data in one line. In an immediately later while loop, I will analyze each line.
         while (myfile.peek() != EOF && j<18){
             //cout<<"h0::"<<endl;
@@ -218,7 +217,6 @@ void readInputFileForInd (int yearInd, int productInd, int companyInd){
                 if (row.find(",") == std::string::npos){
                     break;
                 }
-
                 line+=row.substr(0,pos+1);
                 row.erase(0,pos+1);
                 j++;
@@ -235,7 +233,6 @@ void readInputFileForInd (int yearInd, int productInd, int companyInd){
 //        cout<<line<<endl;
 //        cout<<"----------*"<<endl;
 //        cout<<endl;
-
         // j is the number of extracted features from the input line, initialized index from 0. Can't be greater than 17 since there can be only 18 attributes on each line
         j = 0;
         // Now I will extract each of the 18 attributes from each line till there is no more left in the line string.
@@ -251,10 +248,12 @@ void readInputFileForInd (int yearInd, int productInd, int companyInd){
             if (j==yearInd){
                 year = line.substr(0,pos);
                 int loc = 0;
-                while (loc<year.size()-4 && (year[loc] <48 || year[loc+1] <48 || year[loc+2] <48 || year[loc+3] <48)){ // 48 is the ASCII number for 0. i.e. CHAR(digits) > 47 for digits={0,1,2,...}
+                while (pos!=0 && loc<year.size()-4 && (year[loc] <48 || year[loc+1] <48 || year[loc+2] <48 || year[loc+3] <48)) { // 48 is the ASCII number for 0. i.e. CHAR(digits) > 47 for digits={0,1,2,...}
                     loc++;
                 }
                 year = year.substr(loc,4);
+                if (year.size()==0)
+                    break;
             }
             if (j==productInd){
                 product = line.substr(0,pos);
@@ -284,7 +283,7 @@ void readInputFileForInd (int yearInd, int productInd, int companyInd){
 void transToLower(string& in){
     for (int i = 0;i<in.size();i++){
         if (in[i]>64 && in[i]<91){
-            in[i] +=32;
+            in[i] += 32;
         }
     }
 }
