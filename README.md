@@ -130,5 +130,3 @@ On success:
     [PASS]: test_1
     [Sun Mar 29 16:25:57 PDT 2020] 1 of 1 tests passed
 
-## Lastly,
-* I just want to mention that the Repo has been tested on the given <a href="https://insight-cc-submission.com/test-my-repo-link" rel="nofollow">website</a> with a 100% match success.
