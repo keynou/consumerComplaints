@@ -25,7 +25,7 @@ The anlaysis is particularly looking for the following output results
 
 
 # Task
-As a data engineer, we are asked to create a mechanism to analyze the data, specifically, calculate two metrics: 
+As a data engineer, I want to analyze the data, specifically, calculate two metrics: 
 1) **Number of complaints for a specific year and product** and 2) **Number of companies for a specific year and product**.
 Then we are tasked to find the percentage portion of the company that has the most number of the complaints for that product and year.
 
@@ -86,17 +86,17 @@ insight_DE__consumerComplaints~$
 				|   │   └── complaints.csv
 				|   |__ output
 				|   │   └── report.csv
-				├── your-own-test_1
+				├── my-own-test_1
 				|	├── input
 				|	│   └── complaints.csv
 				|	|── output
 				|		└── report.csv
-				├── your-own-test_2
+				├── my-own-test_2
 				|	├── input
 				|	│   └── complaints.csv
 				|	|── output
 				|		└── report.csv
-				├── your-own-test_3
+				├── my-own-test_3
 				|	├── input
 				|	│   └── complaints.csv
 				|	|── output
